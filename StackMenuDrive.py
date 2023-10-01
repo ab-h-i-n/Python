@@ -4,20 +4,44 @@ class Stack:
         self.data = []
         self.n = n
 
-    def Insert(self):
+    def Push(self):
         if self.tos == self.n - 1:
             print("Element can't be inserted, stack is full!")
-            exit()
+            return
         else:
             self.tos += 1
             x = input("Enter an element: ")
             self.data.append(x)
+        print(self)
+
+    def Pop(self):
+        if self.tos == -1:
+            print("Stack is empty!")
+            return
+        else:
+            x = self.data.pop()
+            print(f"Element {x} has been removed!")
+            self.tos -= 1
+        print(self)
 
     def __str__(self):
-        return "Stack: " + ", ".join(self.data)
+        if self.tos == -1:
+            return "Stack is empty!"
+        else:
+            return "Stack: " + ", ".join(self.data)
+
 
 S = Stack(5)
 
 while True:
-    S.Insert()
-    print(S)
+    print("1. Push")
+    print("2. Pop")
+    print("0. Exit")
+    ch = int(input("Enter your choice : "))
+
+    if ch == 1:
+        S.Push()
+    elif ch == 2:
+        S.Pop()
+    else:
+        exit()
